@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { HttpInterceptorFn } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthInterceptor {}
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const request = req.clone({
+    withCredentials: true,
+  });
+
+  return next(request);
+};
