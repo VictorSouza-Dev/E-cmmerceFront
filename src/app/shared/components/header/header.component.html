@@ -1,1 +1,71 @@
-<p>header.component works!</p>
+<header>
+  <a routerLink="/" class="brand">Mor.Tekka</a>
+
+  <nav class="navigation">
+    <div class="search-container">
+      @if (!isSearchActive) {
+        <button (click)="toggleSearch()" class="search-btn" aria-label="Buscar">
+          <lucide-icon [img]="SearchIscon" [size]="22"></lucide-icon>
+        </button>
+      } @else {
+        <input
+          #searchInput
+          class="input-search"
+          type="text"
+          placeholder="Search..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+          (blur)="onSearchBlur()"
+        />
+      }
+    </div>
+
+    <ul>
+      <li>
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </a>
+      </li>
+      <li><a class="nav-link" routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="user-dropdown-container">
+    <button class="user-icon-btn" (click)="toggleUserMenu()" aria-label="Menu do Usuário">
+      <lucide-icon [img]="UserIcon" [size]="22"></lucide-icon>
+    </button>
+
+    @if (isUserMenuOpen) {
+      <div class="user-modal">
+        <div class="user-info">
+          <p class="user-name">Minha Conta</p>
+        </div>
+        <hr />
+        <ul class="modal-options">
+          <li>
+            <a routerLink="/profile" (click)="isUserMenuOpen = false">Meu Perfil</a>
+          </li>
+          <li>
+            <a routerLink="/orders" (click)="isUserMenuOpen = false">Meus Pedidos</a>
+          </li>
+          <li>
+            <a routerLink="/settings" (click)="isUserMenuOpen = false">Configurações</a>
+          </li>
+          <li>
+            @if (isAuthenticated) {
+              <button class="logout-btn" (click)="logout()">Sair</button>
+            } @else {
+              <a class="login-link" routerLink="/login" (click)="isUserMenuOpen = false">Entrar</a>
+            }
+          </li>
+        </ul>
+      </div>
+    }
+  </div>
+</header>

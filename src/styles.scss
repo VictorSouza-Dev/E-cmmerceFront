@@ -1,13 +1,38 @@
 @use 'styles/variables' as *;
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: $font-montserrat;
-  -webkit-font-smoothing: antialiased;
+  background-color: $white;
+  color: $gray-dark;
+}
+
+h1,
+h2,
+.brand-title {
+  font-family: $font-cinzel;
+}
+
+.btn-primary {
+  font-family: $font-montserrat;
+  background-color: $accent;
+  color: $white;
+  border: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.product-card {
+  border: 1px solid $gray-light;
+  background-color: #ffffff;
 }
 
 img,
@@ -30,6 +55,7 @@ button {
 
 a {
   color: inherit;
+  cursor: pointer;
   text-decoration: none;
 }
 
