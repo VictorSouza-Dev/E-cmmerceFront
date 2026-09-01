@@ -7,50 +7,73 @@
   align-items: center;
   justify-content: center;
   background-color: $black-1000;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
   box-sizing: border-box;
 }
 
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  width: 100%;
+  max-width: 950px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.login-hero {
+  flex: 1;
+
+  .hero-title {
+    font-family: $font-cinzel;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $white;
+    line-height: 1.2;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+  }
+}
+
 .login-card {
+  width: 100%;
+  max-width: 420px;
   background-color: $black-1000;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 2.5rem 2rem;
-  width: 100%;
-  max-width: 400px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
   font-family: $font-montserrat;
-
-  .login-title {
-    font-family: $font-cinzel;
-    color: $white;
-    font-size: 2rem;
-    text-align: center;
-    margin: 0 0 0.5rem 0;
-  }
 
   .login-subtitle {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.85rem;
-    text-align: center;
-    margin-bottom: 2rem;
+    margin: 0 0 1.5rem 0;
   }
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
 
     label {
       color: $white;
       font-size: 0.85rem;
       font-weight: 500;
+      margin-bottom: 0.4rem;
     }
 
     input {
@@ -75,11 +98,22 @@
         border-color: $white;
       }
     }
+  }
+
+  .error-slot {
+    height: 1.4rem;
+    display: flex;
+    align-items: center;
+
+    &.global-error {
+      justify-content: center;
+      margin-top: 0.2rem;
+    }
 
     .error-message {
       color: $red-200;
       font-size: 0.75rem;
-      margin-top: 0.2rem;
+      line-height: 1;
     }
   }
 
@@ -109,6 +143,20 @@
     &:disabled {
       opacity: 0.4;
       cursor: not-allowed;
+    }
+  }
+
+  .link-register {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-top: 1.25rem;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: underline;
     }
   }
 }

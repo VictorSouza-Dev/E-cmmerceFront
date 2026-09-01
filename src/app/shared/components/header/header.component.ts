@@ -1,7 +1,17 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  OnInit,
+  Signal,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule, User, Search } from 'lucide-angular';
+import { user } from '../../../core/models/user.model';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +19,31 @@ import { LucideAngularModule, User, Search } from 'lucide-angular';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
-  readonly UserIcon = User;
-  readonly SearchIscon = Search;
+export class HeaderComponent implements OnInit {
+  private authService: AuthService = inject(AuthService);
+  private eRef: ElementRef = inject(ElementRef);
 
-  constructor(private eRef: ElementRef) {}
+  readonly UserIcon = User;
+  readonly SearchIcon = Search;
+
+  readonly currentUser: Signal<user | null> = this.authService.currentUser;
 
   isUserMenuOpen: boolean = false;
-  isAuthenticated: boolean = false;
   isSearchActive: boolean = false;
   searchQuery: string = '';
 
   @ViewChild('searchInput')
   searchInputRef!: ElementRef<HTMLInputElement>;
+
+  ngOnInit(): void {
+    if (!this.currentUser()) {
+      this.authService.fetchUser().subscribe();
+    }
+  }
+
+  get isAuthenticated(): boolean {
+    return !!this.currentUser();
+  }
 
   onSearch(): void {
     console.log('Search query:', this.searchQuery);
@@ -43,9 +65,10 @@ export class HeaderComponent {
   toggleUserMenu(): void {
     this.isUserMenuOpen = !this.isUserMenuOpen;
   }
+
   logout(): void {
-    this.isAuthenticated = false;
     this.isUserMenuOpen = false;
+    this.authService.logout();
   }
 
   @HostListener('document:click', ['$event'])
