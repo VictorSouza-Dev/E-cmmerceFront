@@ -1,0 +1,42 @@
+@use '../../../styles/variables.scss' as *;
+
+.btn-theme-toggle {
+  background: transparent;
+  border: 2px solid $white-pure;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-main;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+
+  svg {
+    display: block;
+    transition: transform 0.3s ease;
+    color: $white-pure;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+
+    svg {
+      transform: rotate(25deg);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var $bg-main;
+    outline-offset: 2px;
+  }
+}

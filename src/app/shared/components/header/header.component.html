@@ -36,7 +36,7 @@
     </ul>
   </nav>
 
-  <div class="user-dropdown-container">
+  <div #userDropdown class="user-dropdown-container">
     <button class="user-icon-btn" (click)="toggleUserMenu()" aria-label="Menu do Usuário">
       <lucide-icon [img]="UserIcon" [size]="22"></lucide-icon>
     </button>
@@ -61,7 +61,9 @@
             @if (isAuthenticated) {
               <button class="logout-btn" (click)="logout()">Sair</button>
             } @else {
-              <a class="login-link" routerLink="/login" (click)="isUserMenuOpen = false">Entrar</a>
+              <a class="login-link" routerLink="/auth/login" (click)="isUserMenuOpen = false"
+                >Entrar</a
+              >
             }
           </li>
         </ul>

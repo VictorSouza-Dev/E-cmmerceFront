@@ -1,0 +1,51 @@
+@use '../../../../../styles/variables.scss' as *;
+
+.header-auth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $black-1000;
+  padding: 1rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  .logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .logo {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .header-auth {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .brand .logo {
+    height: 36px;
+  }
+
+  .btn-theme-toggle {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

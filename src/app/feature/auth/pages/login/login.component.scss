@@ -1,63 +1,91 @@
 @use '../../../../../styles/variables.scss' as *;
 
+:host {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
 .login-container {
-  min-height: 100vh;
+  flex: 1;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $black-1000;
+  background-color: $bg-main;
   padding: 2rem 1.5rem;
   box-sizing: border-box;
+  transition: background-color 0.25s ease;
 }
 
 .login-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
   width: 100%;
-  max-width: 950px;
+  max-width: 1000px;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
     gap: 2rem;
+    justify-items: center;
   }
 }
 
 .login-hero {
-  flex: 1;
+  text-align: center;
 
   .hero-title {
     font-family: $font-cinzel;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    color: $white;
-    line-height: 1.2;
+    color: $text-main;
+    line-height: 1.25;
     margin: 0;
+    transition: color 0.25s ease;
 
-    @media (max-width: 768px) {
-      font-size: 1.8rem;
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 1.75rem;
       text-align: center;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 1.5rem;
     }
   }
 }
 
 .login-card {
+  background-color: $bg-card;
   width: 100%;
   max-width: 420px;
-  background-color: $black-1000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  justify-self: end;
+  border: 1px solid $border-subtle;
   border-radius: 8px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  padding: 2rem 2rem 1.5rem 2rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   font-family: $font-montserrat;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+
+  @media (max-width: $breakpoint-tablet) {
+    justify-self: center;
+  }
 
   .login-subtitle {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
+    color: $text-muted;
+    font-size: 1.15rem;
     margin: 0 0 1.5rem 0;
+    text-align: center;
+    transition: color 0.25s ease;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -70,32 +98,38 @@
     flex-direction: column;
 
     label {
-      color: $white;
+      color: $text-main;
       font-size: 0.85rem;
       font-weight: 500;
       margin-bottom: 0.4rem;
+      transition: color 0.25s ease;
     }
 
     input {
       width: 100%;
       padding: 0.75rem 0.9rem;
       border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background-color: rgba(255, 255, 255, 0.05);
-      color: $white;
+      border: 1px solid $border-input;
+      background-color: $bg-input;
+      color: $text-main;
       font-family: $font-montserrat;
       font-size: 0.9rem;
       box-sizing: border-box;
-      transition: all 0.2s ease;
+      transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.2s ease;
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.3);
+        color: $text-muted;
+        opacity: 0.7;
       }
 
       &:focus {
         outline: none;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-color: $white;
+        border-color: $text-main;
+        box-shadow: 0 0 0 3px rgba(128, 128, 128, 0.2);
       }
     }
   }
@@ -118,26 +152,35 @@
   }
 
   .btn-submit {
+    width: 100%;
+    align-self: center;
     margin-top: 0.5rem;
     padding: 0.85rem;
     border-radius: 4px;
     border: none;
-    background-color: $white;
-    color: $black-1000;
+    background-color: $btn-bg;
+    color: $text-button;
     font-family: $font-montserrat;
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
     transition:
       opacity 0.2s ease,
-      transform 0.1s ease;
+      transform 0.1s ease,
+      background-color 0.25s ease,
+      color 0.25s ease;
 
     &:hover:not(:disabled) {
-      opacity: 0.9;
+      background-color: $btn-hover;
     }
 
     &:active:not(:disabled) {
       transform: scale(0.99);
+    }
+
+    &:focus-visible {
+      outline: 3px solid $border-input;
+      outline-offset: 3px;
     }
 
     &:disabled {
@@ -148,15 +191,32 @@
 
   .link-register {
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
+    color: $text-muted;
     font-size: 0.85rem;
     text-decoration: none;
     margin-top: 1.25rem;
-    transition: opacity 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      color 0.25s ease;
 
     &:hover {
-      opacity: 1;
+      color: $text-main;
       text-decoration: underline;
     }
+
+    &:focus-visible {
+      outline: 2px solid $text-main;
+      outline-offset: 4px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .login-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-card {
+    padding: 1.5rem 1.25rem;
   }
 }

@@ -35,6 +35,9 @@ export class HeaderComponent implements OnInit {
   @ViewChild('searchInput')
   searchInputRef!: ElementRef<HTMLInputElement>;
 
+  @ViewChild('userDropdown')
+  userDropdownRef!: ElementRef;
+
   ngOnInit(): void {
     if (!this.currentUser()) {
       this.authService.fetchUser().subscribe();
@@ -73,7 +76,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickout(event: Event): void {
-    if (!this.eRef.nativeElement.contains(event.target)) {
+    if (!this.userDropdownRef.nativeElement.contains(event.target)) {
       this.isUserMenuOpen = false;
     }
   }

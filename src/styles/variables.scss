@@ -1,18 +1,28 @@
 $font-cinzel: 'Cinzel', serif;
 $font-montserrat: 'Montserrat', sans-serif;
 
-$black-200: #222222;
-$black-400: #121212;
-$black-600: #1a1a1a;
-$black-800: #0d0d0d;
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 768px;
+
 $black-1000: #000000;
-
-$white: #fafafa;
-
+$white-pure: #ffffff;
+$white-off: #fafafa;
 $red-200: #d9534f;
 
-$gray-light: #f0f0f0;
-$gray-medium: #888888;
-$gray-dark: #121212;
+$bg-main: var(--bg-main);
+$bg-card: var(--bg-card);
+$bg-input: var(--bg-input);
+$text-main: var(--text-main);
+$text-muted: var(--text-muted);
+$text-button: var(--text-button);
+$border-subtle: var(--border-subtle);
+$btn-bg: var(--btn-bg);
+$btn-hover: var(--btn-hover);
+$border-input: var(--border-input);
 
-$accent: $black-1000;
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-btn: var(--text-btn);
+$text-header: var(--text-header);
+
+$border-color: var(--border-color);
